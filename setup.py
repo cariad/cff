@@ -42,9 +42,11 @@ setup(
     name="cff",
     packages=[
         "cff",
+        "cff.models",
     ],
     package_data={
         "cff": ["py.typed"],
+        "cff.models": ["py.typed"],
     },
     python_requires=">=3.9",
     url="https://github.com/cariad/cff",
