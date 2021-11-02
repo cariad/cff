@@ -6,6 +6,7 @@ Models
    :caption: Contents:
 
    cloudfront_event
+   header
    lambda_event
    record
    request
