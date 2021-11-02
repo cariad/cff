@@ -199,19 +199,17 @@
 <section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>If a client requests a URI that <strong>ends with a slash</strong> (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/</span></code>) then the handler will transform the request to specify the directory’s index file (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/index.html</span></code>). The index file name is configurable.</p></li>
-<li><p>If a client requests a URI that <strong>does not end with a slash</strong> and the final item in the path <strong>does not contain a period</strong> (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/bar</span></code>) then a redirect is returned to the client to try again with a slash (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/bar/</span></code>)</p></li>
+<li><p>If a client sends a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request for a URI that <strong>ends with a slash</strong> (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/</span></code>) then the handler will transform the request to include the directory’s index file (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/index.html</span></code>).</p></li>
+<li><p>If a client sends a <code class="docutils literal notranslate"><span class="pre">GET</span></code> request for a URI that <strong>does not end with a slash</strong> and the final item in the path <strong>does not contain a period</strong> (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/bar</span></code>) then a redirect is returned to the client to try again with a slash (i.e. <code class="docutils literal notranslate"><span class="pre">/foo/bar/</span></code>)</p></li>
 <li><p>…otherwise, the request is passed unmodified to the origin.</p></li>
 </ul>
 </section>
 <section id="basic-usage">
 <h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
 <p>Create your Lambda function script with this single line:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cff.origin_request</span> <span class="kn">import</span> <span class="n">handler</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cff.origin_request</span> <span class="kn">import</span> <span class="n">handler</span>
 </pre></div>
 </div>
-</div></blockquote>
 </section>
 <section id="advanced-usage">
 <h2>Advanced usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h2>

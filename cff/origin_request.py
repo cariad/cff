@@ -5,8 +5,8 @@ Origin Request handler
 Operations
 ----------
 
-- If a client requests a URI that **ends with a slash** (i.e. ``/foo/``) then the handler will transform the request to specify the directory's index file (i.e. ``/foo/index.html``). The index file name is configurable.
-- If a client requests a URI that **does not end with a slash** and the final item in the path **does not contain a period** (i.e. ``/foo/bar``) then a redirect is returned to the client to try again with a slash (i.e. ``/foo/bar/``)
+- If a client sends a ``GET`` request for a URI that **ends with a slash** (i.e. ``/foo/``) then the handler will transform the request to include the directory's index file (i.e. ``/foo/index.html``).
+- If a client sends a ``GET`` request for a URI that **does not end with a slash** and the final item in the path **does not contain a period** (i.e. ``/foo/bar``) then a redirect is returned to the client to try again with a slash (i.e. ``/foo/bar/``)
 - ...otherwise, the request is passed unmodified to the origin.
 
 Basic usage
@@ -14,9 +14,9 @@ Basic usage
 
 Create your Lambda function script with this single line:
 
-   .. code-block:: python
+.. code-block:: python
 
-       from cff.origin_request import handler
+    from cff.origin_request import handler
 
 Advanced usage
 --------------
@@ -31,7 +31,7 @@ To configure the handler, run :meth:`configure` with a :class:`.Configuration` i
 """
 
 from dataclasses import dataclass
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 from cff.models import Header, LambdaEvent, Request, Response, ResponseHeaders
 
@@ -52,9 +52,17 @@ def configure(config: Configuration) -> None:
     _config = config
 
 
-def handler(event: LambdaEvent, context: Any) -> Union[Request, Response]:
+def handler(
+    event: LambdaEvent,
+    context: Optional[Any] = None,
+) -> Union[Request, Response]:
     """Handler."""
     request = event["Records"][0]["cf"]["request"]
+
+    if request["method"] != "GET":
+        # We care only about GETs:
+        return request
+
     uri = request["uri"]
 
     if uri.endswith("/"):
@@ -72,7 +80,6 @@ def handler(event: LambdaEvent, context: Any) -> Union[Request, Response]:
     # The client requested a directory but omitted the trailing slash. We'll ask
     # them to try again with the slash:
     return Response(
-        status=301,
         headers=ResponseHeaders(
             location=[
                 Header(
@@ -81,4 +88,5 @@ def handler(event: LambdaEvent, context: Any) -> Union[Request, Response]:
                 ),
             ]
         ),
+        status=301,
     )
