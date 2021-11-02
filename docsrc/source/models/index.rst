@@ -10,3 +10,4 @@ Models
    lambda_event
    record
    request
+   response_headers
