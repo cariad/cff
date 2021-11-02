@@ -1,5 +1,7 @@
 # cff
 
+[![CircleCI](https://circleci.com/gh/cariad/cff/tree/main.svg?style=shield)](https://circleci.com/gh/cariad/cff/tree/main) [![codecov](https://codecov.io/gh/cariad/cff/branch/main/graph/badge.svg?token=376z1jxICo)](https://codecov.io/gh/cariad/cff)
+
 **cff** is a Python package for bootstrapping Amazon Web Services **C**loud**F**ront Lambda\@Edge **F**unctions.
 
 If you agree with the package's opinions then your functions become as simple as a single line:
