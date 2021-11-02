@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Models" href="models/index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Origin Request handler" href="origin_request.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
         <title>cff documentation</title>
@@ -154,8 +154,10 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+  <ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">cff introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="origin_request.html">Origin Request handler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="models/index.html">Models</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="models/cloudfront_event.html"><code class="docutils literal notranslate"><span class="pre">CloudFrontEvent</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models/header.html"><code class="docutils literal notranslate"><span class="pre">Header</span></code></a></li>
@@ -192,14 +194,47 @@
           </label>
         </div>
         <article role="main">
-          <section id="cff">
-<h1>cff<a class="headerlink" href="#cff" title="Permalink to this headline">¶</a></h1>
-<p>TODO: Introduction goes here.</p>
+          <section id="cff-introduction">
+<h1>cff introduction<a class="headerlink" href="#cff-introduction" title="Permalink to this headline">¶</a></h1>
+<p><strong>cff</strong> is a Python package for bootstrapping Amazon Web Services <strong>C</strong>loud<strong>F</strong>ront Lambda@Edge <strong>F</strong>unctions.</p>
+<p>If you agree with the package’s opinions then your functions become as simple as a single line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cff.origin_request</span> <span class="kn">import</span> <span class="n">handler</span>
+</pre></div>
+</div>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p><strong>cff</strong> requires Python 3.9. At the time of writing, this is the latest release of Python supported by AWS Lambda.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install cff
+</pre></div>
+</div>
+</section>
+<section id="feedback">
+<h2>Feedback<a class="headerlink" href="#feedback" title="Permalink to this headline">¶</a></h2>
+<p>Please raise bugs, request features and ask questions at <a class="reference external" href="https://github.com/cariad/cff/issues">github.com/cariad/cff/issues</a>.</p>
+<p>Mention if you’re a <a class="reference external" href="https://github.com/sponsors/cariad">sponsor</a> and I’ll respond as a priority. Thank you!</p>
+</section>
+<section id="project">
+<h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+<p>The source for <strong>cff</strong> is available at <a class="reference external" href="https://github.com/cariad/cff">github.com/cariad/cff</a> under the MIT licence.</p>
+<p>And, <strong>hello!</strong> I’m <a class="reference external" href="https://cariad.io">Cariad Eccleston</a> and I’m an independent/freelance software engineer. If my work has value to you, please consider <a class="reference external" href="https://github.com/sponsors/cariad">sponsoring</a> me!</p>
+</section>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cff introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="origin_request.html">Origin Request handler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="origin_request.html#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="origin_request.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="origin_request.html#advanced-usage">Advanced usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#deploying-cff-with-your-function">Deploying <code class="docutils literal notranslate"><span class="pre">cff</span></code> with your function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#configuring-your-lambda-function">Configuring your Lambda function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#lambda-architecture">Lambda architecture</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="models/index.html">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="models/cloudfront_event.html"><code class="docutils literal notranslate"><span class="pre">CloudFrontEvent</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="models/header.html"><code class="docutils literal notranslate"><span class="pre">Header</span></code></a></li>
@@ -220,12 +255,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="models/index.html">
+          <a class="next-page" href="origin_request.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Models</div>
+                <div class="title">Origin Request handler</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -258,7 +293,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">cff</a><ul>
+<li><a class="reference internal" href="#">cff introduction</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#feedback">Feedback</a></li>
+<li><a class="reference internal" href="#project">Project</a></li>
 <li><a class="reference internal" href="#contents">Contents</a></li>
 </ul>
 </li>
