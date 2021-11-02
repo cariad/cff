@@ -1,0 +1,8 @@
+{
+  "restructuredtext.confPath": "${workspaceFolder}/docsrc/source",
+  "cSpell.words": [
+    "autoclass",
+    "currentmodule",
+    "toctree"
+  ]
+}

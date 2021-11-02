@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+black = "==21.10b0"
+flake8 = "*"
+furo = "*"
+isort = "*"
+mypy = "*"
+pytest = "*"
+pytest-cov = "*"
+shellcheck-py = "*"
+sphinx = "*"
+twine = "*"
+yamllint = "*"
+
+[requires]
+# At the time of writing, the latest AWS Lambda Python runtime is 3.9:
+python_version = "3.9"
